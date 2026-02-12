@@ -11,14 +11,22 @@ startup: application
 boot: auto
 init: false
 ports:
-  80/tcp: 8099
+  80/tcp: 8180
 ports_description:
   80/tcp: "InkyPi Web UI"
 map:
   - type: data
     read_only: false
 options:
+  display_type: "mock"
+  display_resolution:
+    - 800
+    - 480
   waveshare_device: ""
 schema:
+  display_type: "list(mock|inky)?"
+  display_resolution:
+    - "int"
+    - "int"
   waveshare_device: "str?"
 full_access: true

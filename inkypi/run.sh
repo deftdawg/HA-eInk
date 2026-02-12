@@ -25,6 +25,18 @@ if [ -f "${DATA_DIR}/images/current_image.png" ]; then
     ln -sf "${DATA_DIR}/images/current_image.png" "${APP_DIR}/src/static/images/current_image.png"
 fi
 
+# Apply display_type and resolution from add-on config
+DISPLAY_TYPE=$(bashio::config 'display_type' 'mock')
+RES_W=$(bashio::config 'display_resolution[0]' '800')
+RES_H=$(bashio::config 'display_resolution[1]' '480')
+
+jq --arg dt "${DISPLAY_TYPE}" --argjson res "[${RES_W},${RES_H}]" \
+    '.display_type = $dt | .resolution = $res' \
+    "${DATA_DIR}/device.json" > "${DATA_DIR}/device.json.tmp" \
+    && mv "${DATA_DIR}/device.json.tmp" "${DATA_DIR}/device.json"
+
+bashio::log.info "Display type: ${DISPLAY_TYPE}, resolution: ${RES_W}x${RES_H}"
+
 # Read Waveshare device configuration
 WS_DEVICE=$(bashio::config 'waveshare_device' '')
 
