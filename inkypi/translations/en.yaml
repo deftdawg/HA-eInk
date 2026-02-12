@@ -1,8 +1,22 @@
 configuration:
+  display_type:
+    name: Display Type
+    description: >-
+      Set to "mock" to run without physical display hardware (saves rendered
+      images to disk). Set to "inky" when using a Pimoroni Inky display with
+      EEPROM auto-detection.
+  display_resolution:
+    name: Display Resolution
+    description: >-
+      Width and height in pixels for the display. Only used when display_type
+      is "mock". Inky displays detect resolution automatically.
   waveshare_device:
     name: Waveshare Device Model
     description: >-
-      If using a Waveshare e-Paper display, specify the device model (e.g., epd7in3f).
-      Leave empty for Pimoroni Inky displays.
+      If using a Waveshare e-Paper display, specify the device model (e.g.,
+      epd7in3f). Leave empty for Pimoroni Inky or mock displays. Overrides
+      display_type when set.
+      For advanced configuration, edit the device.json file located at
+      /config/inkypi/device.json using the File Editor or VS Code Server add-on.
 network:
   80/tcp: InkyPi Web UI

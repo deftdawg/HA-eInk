@@ -30,11 +30,32 @@ InkyPi is an open-source, customizable E-Ink display manager powered by a Raspbe
 
 ## Configuration
 
+### Display Type
+
+- **mock** (default): Runs without physical display hardware. Rendered images are saved to disk. Useful for testing or running the web UI without a connected display.
+- **inky**: Use when a Pimoroni Inky display with EEPROM is connected.
+
+### Display Resolution
+
+Width and height in pixels (default: 800x480). Only applies when display type is "mock" — Inky displays detect resolution automatically.
+
 ### Waveshare Device Model
 
 If using a Waveshare display, set the `waveshare_device` option to your display model (e.g., `epd7in3f`). Leave empty for Pimoroni Inky displays.
 
 The model name should match the driver filename (without `.py`) from the [Waveshare EPD library](https://github.com/waveshareteam/e-Paper/tree/master/RaspberryPi_JetsonNano/python/lib/waveshare_epd).
+
+### Advanced: device.json
+
+The full InkyPi device configuration is stored at:
+
+```
+/config/inkypi/device.json
+```
+
+You can edit this file directly using the **File Editor** or **Studio Code Server** add-on. Browse to the `inkypi` folder in your Home Assistant configuration directory.
+
+This file controls plugin settings, playlist configuration, display orientation, and other options not exposed in the add-on Configuration tab. Changes take effect after restarting the add-on.
 
 ## Usage
 
@@ -47,4 +68,4 @@ After starting the add-on, open the Web UI to configure your display. The InkyPi
 
 ## Data Persistence
 
-Display configuration and uploaded images are stored in the add-on's persistent data directory and will survive add-on restarts and updates.
+Display configuration is stored at `/config/inkypi/device.json` and uploaded images are stored in the add-on's persistent data directory. Both survive add-on restarts and updates.
