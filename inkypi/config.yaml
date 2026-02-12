@@ -6,18 +6,13 @@ arch:
   - aarch64
   - armv7
 url: "https://github.com/fatihak/InkyPi"
-webui: "http://[HOST]:[PORT:80]/"
 startup: application
 boot: auto
 init: false
 ingress: true
-ingress_port: 80
+ingress_port: 0
 panel_icon: mdi:image-multiple-outline
 panel_title: InkyPi
-ports:
-  80/tcp: 8180
-ports_description:
-  80/tcp: "InkyPi Web UI"
 map:
   - type: config
     read_only: false
