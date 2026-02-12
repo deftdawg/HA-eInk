@@ -4,20 +4,29 @@ bashio::log.info "Starting InkyPi add-on..."
 
 APP_DIR="/opt/inkypi"
 DATA_DIR="/data"
+HA_CONFIG_DIR="/config/inkypi"
 CONFIG_DIR="${APP_DIR}/src/config"
 VENV_DIR="${APP_DIR}/venv"
 
 # Ensure persistent data directory structure
 mkdir -p "${DATA_DIR}/images/plugins"
+mkdir -p "${HA_CONFIG_DIR}"
 
-# Initialize device.json on first run
-if [ ! -f "${DATA_DIR}/device.json" ]; then
-    bashio::log.info "First run: initializing device configuration..."
-    cp "${APP_DIR}/config_base/device.json" "${DATA_DIR}/device.json"
+# Initialize or migrate device.json
+if [ ! -f "${HA_CONFIG_DIR}/device.json" ]; then
+    if [ -f "${DATA_DIR}/device.json" ]; then
+        bashio::log.info "Migrating device.json to HA config directory..."
+        mv "${DATA_DIR}/device.json" "${HA_CONFIG_DIR}/device.json"
+    else
+        bashio::log.info "First run: initializing device configuration..."
+        cp "${APP_DIR}/config_base/device.json" "${HA_CONFIG_DIR}/device.json"
+    fi
 fi
 
+bashio::log.info "Device config at: /config/inkypi/device.json (editable via File Editor add-on)"
+
 # Symlink persistent config into the app's expected location
-ln -sf "${DATA_DIR}/device.json" "${CONFIG_DIR}/device.json"
+ln -sf "${HA_CONFIG_DIR}/device.json" "${CONFIG_DIR}/device.json"
 
 # Symlink persistent image storage
 ln -sf "${DATA_DIR}/images/plugins" "${APP_DIR}/src/static/images/plugins"
@@ -32,8 +41,8 @@ RES_H=$(bashio::config 'display_resolution[1]' '480')
 
 jq --arg dt "${DISPLAY_TYPE}" --argjson res "[${RES_W},${RES_H}]" \
     '.display_type = $dt | .resolution = $res' \
-    "${DATA_DIR}/device.json" > "${DATA_DIR}/device.json.tmp" \
-    && mv "${DATA_DIR}/device.json.tmp" "${DATA_DIR}/device.json"
+    "${HA_CONFIG_DIR}/device.json" > "${HA_CONFIG_DIR}/device.json.tmp" \
+    && mv "${HA_CONFIG_DIR}/device.json.tmp" "${HA_CONFIG_DIR}/device.json"
 
 bashio::log.info "Display type: ${DISPLAY_TYPE}, resolution: ${RES_W}x${RES_H}"
 
@@ -69,8 +78,8 @@ if bashio::var.has_value "${WS_DEVICE}"; then
     fi
 
     # Update device.json with display_type
-    jq --arg dt "${WS_DEVICE}" '.display_type = $dt' "${DATA_DIR}/device.json" > "${DATA_DIR}/device.json.tmp" \
-        && mv "${DATA_DIR}/device.json.tmp" "${DATA_DIR}/device.json"
+    jq --arg dt "${WS_DEVICE}" '.display_type = $dt' "${HA_CONFIG_DIR}/device.json" > "${HA_CONFIG_DIR}/device.json.tmp" \
+        && mv "${HA_CONFIG_DIR}/device.json.tmp" "${HA_CONFIG_DIR}/device.json"
 fi
 
 bashio::log.info "Starting InkyPi web server..."
