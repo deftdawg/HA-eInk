@@ -25,8 +25,25 @@ fi
 
 bashio::log.info "Device config at: /config/inkypi/device.json (editable via File Editor add-on)"
 
+# Initialize .env for API keys on first run
+if [ ! -f "${HA_CONFIG_DIR}/.env" ]; then
+    bashio::log.info "Creating .env file for API keys..."
+    cat > "${HA_CONFIG_DIR}/.env" <<'EOF'
+# InkyPi API Keys
+# Uncomment and fill in the keys for the plugins you want to use.
+# See https://github.com/fatihak/InkyPi/blob/main/docs/api_keys.md
+#OPEN_AI_SECRET=
+#OPEN_WEATHER_MAP_SECRET=
+#NASA_SECRET=
+#UNSPLASH_ACCESS_KEY=
+#GITHUB_SECRET=
+#IMMICH_KEY=
+EOF
+fi
+
 # Symlink persistent config into the app's expected location
 ln -sf "${HA_CONFIG_DIR}/device.json" "${CONFIG_DIR}/device.json"
+ln -sf "${HA_CONFIG_DIR}/.env" "${APP_DIR}/.env"
 
 # Symlink persistent image storage
 ln -sf "${DATA_DIR}/images/plugins" "${APP_DIR}/src/static/images/plugins"

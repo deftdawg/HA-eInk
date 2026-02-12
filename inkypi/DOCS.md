@@ -45,6 +45,16 @@ If using a Waveshare display, set the `waveshare_device` option to your display 
 
 The model name should match the driver filename (without `.py`) from the [Waveshare EPD library](https://github.com/waveshareteam/e-Paper/tree/master/RaspberryPi_JetsonNano/python/lib/waveshare_epd).
 
+### API Keys
+
+Certain plugins (AI Image, Weather, etc.) require API keys. These are stored in:
+
+```
+/config/inkypi/.env
+```
+
+Edit this file using the **File Editor** or **Studio Code Server** add-on. A template with all supported keys is created automatically on first run. See the [API Keys documentation](https://github.com/fatihak/InkyPi/blob/main/docs/api_keys.md) for details on obtaining keys.
+
 ### Advanced: device.json
 
 The full InkyPi device configuration is stored at:
