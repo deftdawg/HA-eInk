@@ -5,14 +5,13 @@ description: "E-Ink display manager for Raspberry Pi - display weather, calendar
 arch:
   - aarch64
   - armv7
-icon: mdi:image-multiple-outline
 url: "https://github.com/fatihak/InkyPi"
 webui: "http://[HOST]:[PORT:80]/"
 startup: application
 boot: auto
 init: false
 ingress: true
-ingress_port: 8099
+ingress_port: 80
 panel_icon: mdi:image-multiple-outline
 panel_title: InkyPi
 ports:
