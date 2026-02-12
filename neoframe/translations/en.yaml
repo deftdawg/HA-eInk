@@ -1,0 +1,108 @@
+configuration:
+  image_source_url:
+    name: Image Source URL
+    description: >-
+      URL of the source image to poll. Typically points to the InkyPi add-on's
+      current_image.png endpoint.
+  esp32_hostname:
+    name: ESP32 Hostname
+    description: >-
+      Hostname of the ESP32 driving the NeoFrame display. Used for DNS lookup
+      to resolve the device IP.
+  esp32_ip:
+    name: ESP32 IP Address
+    description: >-
+      Fallback IP address of the ESP32 if DNS lookup fails. Default is the
+      ESP32 access point IP.
+  dns_server:
+    name: DNS Server
+    description: >-
+      DNS server to use for resolving the ESP32 hostname (e.g., your router IP).
+  poll_interval:
+    name: Poll Interval
+    description: >-
+      How often (in seconds) to check for image changes and push to the frame.
+  dither_mode:
+    name: Dither Mode
+    description: >-
+      Color dithering mode. "sixColor" for the Spectra 6 palette, "bw" for
+      black and white.
+  dither_type:
+    name: Dither Type
+    description: >-
+      Dithering algorithm to use. Floyd-Steinberg produces smooth gradients,
+      Atkinson is sharper, ordered uses a fixed pattern.
+  dither_strength:
+    name: Dither Strength
+    description: >-
+      Strength of the dithering effect (0.0 to 2.0). Higher values produce
+      more visible dithering.
+  rotation:
+    name: Rotation
+    description: >-
+      Rotation of the image in degrees (0, 90, 180, or 270).
+  scaling:
+    name: Scaling Mode
+    description: >-
+      How to scale the image to the frame. "fill" fills the entire frame,
+      "fit" fits within the frame, "fit_8x10" fits an 8x10 aspect ratio,
+      "custom" uses a custom scale percentage.
+  custom_scale:
+    name: Custom Scale
+    description: >-
+      Custom scale percentage (1-100). Only used when scaling is set to "custom".
+  contrast:
+    name: Contrast
+    description: >-
+      Contrast adjustment multiplier. 1.0 is no change, values above 1.0
+      increase contrast.
+  qr_code_enabled:
+    name: QR Code Enabled
+    description: >-
+      Whether to overlay a QR code on the displayed image.
+  qr_content_type:
+    name: QR Content Type
+    description: >-
+      Type of content for the QR code. "url" uses the image URL, "custom"
+      uses custom text.
+  qr_custom_text:
+    name: QR Custom Text
+    description: >-
+      Custom text or URL to encode in the QR code. Only used when QR content
+      type is "custom".
+  qr_position:
+    name: QR Position
+    description: >-
+      Corner of the image where the QR code is placed.
+  qr_margin:
+    name: QR Margin
+    description: >-
+      Margin in pixels between the QR code and the image edge.
+  qr_color:
+    name: QR Color
+    description: >-
+      Color of the QR code modules (e.g., "rgb(0, 0, 0)" for black).
+  qr_background_color:
+    name: QR Background Color
+    description: >-
+      Background color of the QR code (e.g., "rgb(255, 255, 255)" for white).
+  qr_border_size:
+    name: QR Border Size
+    description: >-
+      Size of the quiet zone border around the QR code in modules.
+  autosave:
+    name: Autosave
+    description: >-
+      Whether to automatically save the dithered image to disk after processing.
+  qr_exif_labels:
+    name: QR EXIF Labels
+    description: >-
+      Include EXIF label metadata in the QR code content.
+  qr_exif_gps:
+    name: QR EXIF GPS
+    description: >-
+      Include EXIF GPS coordinates in the QR code content.
+  qr_exif_maps:
+    name: QR EXIF Maps
+    description: >-
+      Include a maps link for EXIF GPS data in the QR code content.

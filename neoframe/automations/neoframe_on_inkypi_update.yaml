@@ -1,0 +1,61 @@
+# NeoFrame: Update display when InkyPi image changes
+#
+# This automation monitors InkyPi's current_image.png via a REST sensor
+# and restarts the NeoFrame addon when the image changes, triggering an
+# immediate display update instead of waiting for the next poll cycle.
+#
+# Installation:
+#   1. Copy this file's contents into your Home Assistant automations.yaml
+#      OR import it via Settings → Automations → ⋮ → Create from YAML
+#   2. Add the REST sensor below to your configuration.yaml:
+#
+#      sensor:
+#        - platform: rest
+#          name: InkyPi Image Last Modified
+#          resource: http://homeassistant.local:8180/static/images/current_image.png
+#          method: HEAD
+#          headers:
+#            Accept: image/png
+#          value_template: "{{ value_json is not defined }}"
+#          json_attributes: []
+#          scan_interval: 30
+#          # The sensor state uses the response's Last-Modified header
+#          # captured via a REST sensor response attribute
+#
+#      # Alternative: Use a command_line sensor for more reliable change detection:
+#      command_line:
+#        - sensor:
+#            name: InkyPi Image Hash
+#            command: >-
+#              curl -sf http://homeassistant.local:8180/static/images/current_image.png |
+#              md5sum | cut -d' ' -f1
+#            scan_interval: 30
+#            value_template: "{{ value }}"
+#
+# The command_line sensor approach is recommended as it detects actual
+# content changes via MD5 hash, regardless of server caching headers.
+
+alias: "NeoFrame: Update on InkyPi Image Change"
+description: >-
+  Restarts the NeoFrame addon when InkyPi's current image changes,
+  triggering an immediate display refresh.
+trigger:
+  - platform: state
+    entity_id: sensor.inkypi_image_hash
+condition:
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: sensor.inkypi_image_hash
+        state: "unavailable"
+      - condition: state
+        entity_id: sensor.inkypi_image_hash
+        state: "unknown"
+      - condition: state
+        entity_id: sensor.inkypi_image_hash
+        state: ""
+action:
+  - service: hassio.addon_restart
+    data:
+      addon: local_neoframe
+mode: single

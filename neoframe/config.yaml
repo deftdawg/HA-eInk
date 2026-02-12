@@ -1,0 +1,65 @@
+name: NeoFrame
+version: "1.0.0"
+slug: neoframe
+description: "Dithers and pushes images to a Good Display NeoFrame 13.3\" Spectra 6 e-ink display via ESP32"
+arch:
+  - amd64
+  - aarch64
+  - armv7
+url: "https://github.com/deftdawg/neoframe"
+startup: application
+boot: auto
+init: false
+map:
+  - type: config
+    read_only: false
+options:
+  image_source_url: "http://homeassistant.local:8180/static/images/current_image.png"
+  esp32_hostname: "esp32s3-B049A4"
+  esp32_ip: "192.168.4.1"
+  dns_server: "10.0.0.1"
+  poll_interval: 80
+  dither_mode: "sixColor"
+  dither_type: "floydSteinberg"
+  dither_strength: "1.0"
+  rotation: "0"
+  scaling: "fit_8x10"
+  custom_scale: "49"
+  contrast: "1.2"
+  qr_code_enabled: false
+  qr_content_type: "custom"
+  qr_custom_text: ""
+  qr_position: "bottom-right"
+  qr_margin: "20"
+  qr_color: "rgb(0, 0, 0)"
+  qr_background_color: "rgb(255, 255, 255)"
+  qr_border_size: "1"
+  autosave: true
+  qr_exif_labels: false
+  qr_exif_gps: false
+  qr_exif_maps: false
+schema:
+  image_source_url: url
+  esp32_hostname: str
+  esp32_ip: str
+  dns_server: str
+  poll_interval: "int(10,3600)"
+  dither_mode: "list(sixColor|bw)"
+  dither_type: "list(floydSteinberg|atkinson|ordered|none)"
+  dither_strength: str
+  rotation: "list(0|90|180|270)"
+  scaling: "list(fill|fit|fit_8x10|custom)"
+  custom_scale: str
+  contrast: str
+  qr_code_enabled: bool
+  qr_content_type: "list(url|custom)"
+  qr_custom_text: "str?"
+  qr_position: "list(top-left|top-right|bottom-left|bottom-right)"
+  qr_margin: str
+  qr_color: str
+  qr_background_color: str
+  qr_border_size: str
+  autosave: bool
+  qr_exif_labels: bool
+  qr_exif_gps: bool
+  qr_exif_maps: bool
