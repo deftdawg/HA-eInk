@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     swig \
     liblgpio-dev \
     libheif-dev \
+    chromium \
     jq \
     git \
     gcc \
