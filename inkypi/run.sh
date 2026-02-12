@@ -36,8 +36,8 @@ fi
 
 # Apply display_type and resolution from add-on config
 DISPLAY_TYPE=$(bashio::config 'display_type' 'mock')
-RES_W=$(bashio::config 'display_resolution[0]' '800')
-RES_H=$(bashio::config 'display_resolution[1]' '480')
+RES_W=$(bashio::config 'display_width' '800')
+RES_H=$(bashio::config 'display_height' '480')
 
 jq --arg dt "${DISPLAY_TYPE}" --argjson res "[${RES_W},${RES_H}]" \
     '.display_type = $dt | .resolution = $res' \

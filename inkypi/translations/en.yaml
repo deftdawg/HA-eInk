@@ -5,11 +5,16 @@ configuration:
       Set to "mock" to run without physical display hardware (saves rendered
       images to disk). Set to "inky" when using a Pimoroni Inky display with
       EEPROM auto-detection.
-  display_resolution:
-    name: Display Resolution
+  display_width:
+    name: Display Width
     description: >-
-      Width and height in pixels for the display. Only used when display_type
-      is "mock". Inky displays detect resolution automatically.
+      Display width in pixels. Only used when display_type is "mock".
+      Inky displays detect resolution automatically.
+  display_height:
+    name: Display Height
+    description: >-
+      Display height in pixels. Only used when display_type is "mock".
+      Inky displays detect resolution automatically.
   waveshare_device:
     name: Waveshare Device Model
     description: >-
