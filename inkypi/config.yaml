@@ -1,0 +1,24 @@
+name: InkyPi
+version: "1.0.0"
+slug: inkypi
+description: "E-Ink display manager for Raspberry Pi - display weather, calendars, clocks, news, AI-generated images, and more on your e-ink screen"
+arch:
+  - aarch64
+  - armv7
+url: "https://github.com/fatihak/InkyPi"
+webui: "http://[HOST]:[PORT:80]/"
+startup: application
+boot: auto
+init: false
+ports:
+  80/tcp: 8099
+ports_description:
+  80/tcp: "InkyPi Web UI"
+map:
+  - type: data
+    read_only: false
+options:
+  waveshare_device: ""
+schema:
+  waveshare_device: "str?"
+full_access: true

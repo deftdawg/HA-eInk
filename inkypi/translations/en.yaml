@@ -1,0 +1,8 @@
+configuration:
+  waveshare_device:
+    name: Waveshare Device Model
+    description: >-
+      If using a Waveshare e-Paper display, specify the device model (e.g., epd7in3f).
+      Leave empty for Pimoroni Inky displays.
+network:
+  80/tcp: InkyPi Web UI
