@@ -5,6 +5,7 @@ description: "E-Ink display manager for Raspberry Pi - display weather, calendar
 arch:
   - aarch64
   - armv7
+icon: mdi:image-multiple-outline
 url: "https://github.com/fatihak/InkyPi"
 webui: "http://[HOST]:[PORT:80]/"
 startup: application
