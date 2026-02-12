@@ -101,10 +101,6 @@ fi
 
 bashio::log.info "Starting InkyPi web server..."
 
-# Use the ingress port assigned by HA supervisor
-export PORT=$(bashio::addon.ingress_port)
-bashio::log.info "Listening on port ${PORT} (ingress)"
-
 cd "${APP_DIR}"
 source "${VENV_DIR}/bin/activate"
 exec python -u src/inkypi.py
