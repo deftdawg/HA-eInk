@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libfreetype6-dev \
     fonts-noto-color-emoji \
     swig \
-    liblgpio-dev \
     libheif-dev \
     jq \
     curl \
@@ -24,6 +23,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     g++ \
     make \
     && rm -rf /var/lib/apt/lists/*
+
+RUN git clone --depth 1 https://github.com/joan2937/lg /tmp/lg && \
+    cd /tmp/lg && make && make install && \
+    rm -rf /tmp/lg
 
 WORKDIR /opt/inkypi
 
