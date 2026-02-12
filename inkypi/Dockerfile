@@ -1,7 +1,7 @@
 ARG BUILD_FROM=debian:bookworm-slim
 FROM $BUILD_FROM
 
-ARG INKYPI_VERSION=main
+ARG INKYPI_VERSION=ha-ingress-support
 ARG INKYPI_REPO=deftdawg
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
