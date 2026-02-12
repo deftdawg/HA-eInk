@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     librsvg2-dev \
     libpixman-1-dev \
     dnsutils \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 ENV BUN_INSTALL=/usr/local
