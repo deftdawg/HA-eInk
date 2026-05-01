@@ -4,6 +4,12 @@ configuration:
     description: >-
       URL of the source image to poll. Typically points to the InkyPi add-on's
       current_image.png endpoint.
+  resolve_url_ipv4_first:
+    name: Resolve Image URL Using IPv4 First
+    description: >-
+      Prefer IPv4 when resolving the source image URL hostname. Leave enabled
+      for Home Assistant hosts that publish IPv6 addresses but only serve the
+      image reliably over IPv4.
   esp32_hostname:
     name: ESP32 Hostname
     description: >-

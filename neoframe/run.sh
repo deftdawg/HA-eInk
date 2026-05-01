@@ -4,6 +4,7 @@ bashio::log.info "Starting NeoFrame add-on..."
 
 # Read configuration
 IMAGE_SOURCE_URL=$(bashio::config 'image_source_url')
+RESOLVE_URL_IPV4_FIRST=$(bashio::config 'resolve_url_ipv4_first')
 ESP32_HOSTNAME=$(bashio::config 'esp32_hostname')
 ESP32_IP=$(bashio::config 'esp32_ip')
 DNS_SERVER=$(bashio::config 'dns_server')
@@ -43,6 +44,7 @@ fi
 CONFIG_JSON=$(cat <<EOF
 {
   "esp32Ip": "${ESP32_IP}",
+  "resolveUrlIpv4First": ${RESOLVE_URL_IPV4_FIRST},
   "ditherMode": "${DITHER_MODE}",
   "ditherType": "${DITHER_TYPE}",
   "rotation": "${ROTATION}",

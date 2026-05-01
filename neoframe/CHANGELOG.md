@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+- Added a default-enabled option to resolve the image source URL hostname using IPv4 first.
+
 ## 1.0.0
 
 - Initial release

@@ -1,5 +1,5 @@
 name: NeoFrame
-version: "1.0.1"
+version: "1.0.2"
 slug: neoframe
 description: "Dithers and pushes images to a Good Display NeoFrame 13.3\" Spectra 6 e-ink display via ESP32"
 arch:
@@ -15,6 +15,7 @@ map:
     read_only: false
 options:
   image_source_url: "http://homeassistant.local:8180/static/images/current_image.png"
+  resolve_url_ipv4_first: true
   esp32_hostname: "esp32s3-B049A4"
   esp32_ip: "192.168.4.1"
   dns_server: "10.0.0.1"
@@ -40,6 +41,7 @@ options:
   qr_exif_maps: false
 schema:
   image_source_url: url
+  resolve_url_ipv4_first: bool
   esp32_hostname: str
   esp32_ip: str
   dns_server: str

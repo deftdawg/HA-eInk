@@ -47,6 +47,7 @@ The add-on will attempt DNS resolution automatically using the configured DNS se
 | Option | Default | Description |
 |--------|---------|-------------|
 | `image_source_url` | `http://homeassistant.local:8180/static/images/current_image.png` | URL to poll for the source image |
+| `resolve_url_ipv4_first` | `true` | Prefer IPv4 when resolving the source image URL hostname |
 | `esp32_hostname` | `esp32s3-B049A4` | ESP32 hostname for DNS resolution |
 | `esp32_ip` | `192.168.4.1` | Fallback IP if DNS fails |
 | `dns_server` | `10.0.0.1` | DNS server for hostname resolution |
