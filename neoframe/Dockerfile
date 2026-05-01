@@ -27,6 +27,9 @@ RUN curl -fsSL https://bun.sh/install | bash
 RUN git clone --depth 1 --branch "${NEOFRAME_VERSION}" \
     https://github.com/${NEOFRAME_REPO}/neoframe.git /opt/neoframe
 
+# IPv6 seems to be default, this results in 'Connection reset by peer' -> Restrict to IPv4 in /etc/gai.conf
+RUN sed -i 's/^#precedence ::ffff:0:0\/96  100/precedence ::ffff:0:0\/96 100/' /etc/gai.conf
+
 WORKDIR /opt/neoframe
 
 RUN bun install
