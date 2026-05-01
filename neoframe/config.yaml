@@ -1,5 +1,5 @@
 name: NeoFrame
-version: "1.0.2"
+version: "1.0.3"
 slug: neoframe
 description: "Dithers and pushes images to a Good Display NeoFrame 13.3\" Spectra 6 e-ink display via ESP32"
 arch:
