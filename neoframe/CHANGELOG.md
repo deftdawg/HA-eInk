@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.4
+
+- Fixed startup crash loop: the DNS resolution step could time out and, because
+  bashio runs scripts with `set -o errexit -o pipefail`, kill the whole script
+  with exit 1 before the IP fallback ever ran. DNS is now skipped when
+  esp32_hostname is already an IP address, and the lookup pipeline is guarded
+  with `|| true`.
+
 ## 1.0.2
 
 - Added a default-enabled option to resolve the image source URL hostname using IPv4 first.

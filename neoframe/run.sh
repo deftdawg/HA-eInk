@@ -31,13 +31,22 @@ QR_EXIF_LABELS=$(bashio::config 'qr_exif_labels')
 QR_EXIF_GPS=$(bashio::config 'qr_exif_gps')
 QR_EXIF_MAPS=$(bashio::config 'qr_exif_maps')
 
-# Resolve ESP32 IP via DNS, fall back to configured IP
-RESOLVED_IP=$(nslookup "${ESP32_HOSTNAME}" "${DNS_SERVER}" 2>/dev/null | grep 'Address' | grep -v '#' | tail -1 | awk '{print $2}')
-if bashio::var.has_value "${RESOLVED_IP}"; then
-    bashio::log.info "Resolved ${ESP32_HOSTNAME} to ${RESOLVED_IP}"
-    ESP32_IP="${RESOLVED_IP}"
+# Resolve ESP32 IP via DNS, fall back to configured IP.
+# NOTE: bashio executes this script with 'set -o errexit -o pipefail'
+# (plus inherit_errexit), so a failing nslookup pipeline would kill the
+# whole script here with exit 1 before the fallback below ever runs.
+# Guard with '|| true' and skip DNS entirely when the hostname is an IP.
+if [[ "${ESP32_HOSTNAME}" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+    ESP32_IP="${ESP32_HOSTNAME}"
+    bashio::log.info "Using ${ESP32_IP} as ESP32 IP (hostname is an IP address, skipping DNS)"
 else
-    bashio::log.warning "Could not resolve ${ESP32_HOSTNAME}, using fallback IP: ${ESP32_IP}"
+    RESOLVED_IP=$(nslookup "${ESP32_HOSTNAME}" "${DNS_SERVER}" 2>/dev/null | grep 'Address' | grep -v '#' | tail -1 | awk '{print $2}' || true)
+    if bashio::var.has_value "${RESOLVED_IP}"; then
+        bashio::log.info "Resolved ${ESP32_HOSTNAME} to ${RESOLVED_IP}"
+        ESP32_IP="${RESOLVED_IP}"
+    else
+        bashio::log.warning "Could not resolve ${ESP32_HOSTNAME}, using fallback IP: ${ESP32_IP}"
+    fi
 fi
 
 # Build JSON config matching cli.ts expected format
