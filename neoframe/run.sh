@@ -11,8 +11,12 @@ DNS_SERVER=$(bashio::config 'dns_server')
 POLL_INTERVAL=$(bashio::config 'poll_interval')
 
 DITHER_MODE=$(bashio::config 'dither_mode')
+RENDER_MODE=$(bashio::config 'render_mode')
 DITHER_TYPE=$(bashio::config 'dither_type')
 DITHER_STRENGTH=$(bashio::config 'dither_strength')
+INK_SATURATION=$(bashio::config 'ink_saturation')
+SPLIT_MODE=$(bashio::config 'split_mode')
+SPLIT_RENDER_MODE=$(bashio::config 'split_render_mode')
 ROTATION=$(bashio::config 'rotation')
 SCALING=$(bashio::config 'scaling')
 CUSTOM_SCALE=$(bashio::config 'custom_scale')
@@ -55,7 +59,11 @@ CONFIG_JSON=$(cat <<EOF
   "esp32Ip": "${ESP32_IP}",
   "resolveUrlIpv4First": ${RESOLVE_URL_IPV4_FIRST},
   "ditherMode": "${DITHER_MODE}",
+  "renderMode": "${RENDER_MODE}",
   "ditherType": "${DITHER_TYPE}",
+  "inkSaturation": "${INK_SATURATION}",
+  "splitMode": "${SPLIT_MODE}",
+  "splitRenderMode": "${SPLIT_RENDER_MODE}",
   "rotation": "${ROTATION}",
   "scaling": "${SCALING}",
   "customScale": "${CUSTOM_SCALE}",

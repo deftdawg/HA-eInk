@@ -33,16 +33,39 @@ configuration:
     description: >-
       Color dithering mode. "sixColor" for the Spectra 6 palette, "bw" for
       black and white.
+  render_mode:
+    name: Render Mode (or Split Side A)
+    description: >-
+      Spectra 6 rendering style for the full image, or Side A (Left / Top)
+      when A/B split mode is enabled. "auto" selects "vivid" for photos and
+      "graphics" for dashboards/text; "photo" is softer; "legacy" uses the
+      classic NeoFrame CIE Lab pipeline.
   dither_type:
     name: Dither Type
     description: >-
-      Dithering algorithm to use. Floyd-Steinberg produces smooth gradients,
-      Atkinson is sharper, ordered uses a fixed pattern.
+      Error-diffusion or ordered dithering algorithm to use (ignored when
+      render_mode is "graphics").
   dither_strength:
     name: Dither Strength
     description: >-
       Strength of the dithering effect (0.0 to 2.0). Higher values produce
       more visible dithering.
+  ink_saturation:
+    name: Ink Saturation
+    description: >-
+      Blend factor (0.0 to 1.0) between pure RGB and measured Spectra 6 ink
+      colors for "photo" and "graphics" rendering modes.
+  split_mode:
+    name: A/B Split Mode
+    description: >-
+      Optionally split the viewable image seamlessly ("left-right" or
+      "top-bottom") to compare two rendering modes side-by-side on the frame.
+      Set to "none" for normal full-frame rendering.
+  split_render_mode:
+    name: Split Side B Render Mode
+    description: >-
+      Rendering style for Side B (Right / Bottom) when A/B split mode is
+      enabled. Side A uses the main Render Mode setting.
   rotation:
     name: Rotation
     description: >-
