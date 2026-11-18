@@ -17,6 +17,7 @@ DITHER_STRENGTH=$(bashio::config 'dither_strength')
 INK_SATURATION=$(bashio::config 'ink_saturation')
 SPLIT_MODE=$(bashio::config 'split_mode')
 SPLIT_RENDER_MODE=$(bashio::config 'split_render_mode')
+SPLIT_RENDER_MODE_C=$(bashio::config 'split_render_mode_c')
 ROTATION=$(bashio::config 'rotation')
 SCALING=$(bashio::config 'scaling')
 CUSTOM_SCALE=$(bashio::config 'custom_scale')
@@ -64,6 +65,7 @@ CONFIG_JSON=$(cat <<EOF
   "inkSaturation": "${INK_SATURATION}",
   "splitMode": "${SPLIT_MODE}",
   "splitRenderMode": "${SPLIT_RENDER_MODE}",
+  "splitRenderModeC": "${SPLIT_RENDER_MODE_C}",
   "rotation": "${ROTATION}",
   "scaling": "${SCALING}",
   "customScale": "${CUSTOM_SCALE}",

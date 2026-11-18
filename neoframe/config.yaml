@@ -1,5 +1,5 @@
 name: NeoFrame
-version: "1.1.0"
+version: "1.2.0"
 slug: neoframe
 description: "Dithers and pushes images to a Good Display NeoFrame 13.3\" Spectra 6 e-ink display via ESP32"
 arch:
@@ -26,7 +26,8 @@ options:
   dither_strength: "1.0"
   ink_saturation: "0.5"
   split_mode: "none"
-  split_render_mode: "photo"
+  split_render_mode: "auto"
+  split_render_mode_c: "auto"
   rotation: "0"
   scaling: "fit_8x10"
   custom_scale: "49"
@@ -55,8 +56,9 @@ schema:
   dither_type: "list(floydSteinberg|atkinson|stucki|jarvis|ordered|none)"
   dither_strength: str
   ink_saturation: str
-  split_mode: "list(none|left-right|top-bottom)"
+  split_mode: "list(none|left-right|top-bottom|diagonal|diagonal-bl-tr)"
   split_render_mode: "list(auto|vivid|photo|graphics|legacy)"
+  split_render_mode_c: "list(auto|none|vivid|photo|graphics|legacy)"
   rotation: "list(0|90|180|270)"
   scaling: "list(fill|fit|fit_8x10|custom)"
   custom_scale: str

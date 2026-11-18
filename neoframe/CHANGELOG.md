@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- Updated automatic split rendering: `graphics` images split 2-way (`graphics` vs `legacy`) and `photo` images split 3-way (`vivid` vs `photo` vs `legacy`).
+- Added diagonal split options (`diagonal` and `diagonal-bl-tr`) and optional `split_render_mode_c` override.
+- Added high-contrast method labels oriented along each segment's longest frame edge.
+
 ## 1.1.0
 
 - Added Spectra 6 rendering modes (`auto`, `vivid`, `photo`, `graphics`, `legacy`) with `auto` defaulting photos to `vivid` and UI/dashboards to `graphics`.

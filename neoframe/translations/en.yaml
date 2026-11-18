@@ -56,16 +56,26 @@ configuration:
       Blend factor (0.0 to 1.0) between pure RGB and measured Spectra 6 ink
       colors for "photo" and "graphics" rendering modes.
   split_mode:
-    name: A/B Split Mode
+    name: Split Comparison Mode
     description: >-
-      Optionally split the viewable image seamlessly ("left-right" or
-      "top-bottom") to compare two rendering modes side-by-side on the frame.
-      Set to "none" for normal full-frame rendering.
+      Optionally split the viewable image seamlessly ("left-right", "top-bottom",
+      "diagonal" [top-left to bottom-right], or "diagonal-bl-tr" [bottom-left
+      to top-right]) and label each segment along its longest frame edge. When
+      split modes are "auto", graphics split 2-way (graphics vs legacy) and
+      photos split 3-way (vivid vs photo vs legacy). Set to "none" for normal
+      full-frame rendering.
   split_render_mode:
     name: Split Side B Render Mode
     description: >-
-      Rendering style for Side B (Right / Bottom) when A/B split mode is
-      enabled. Side A uses the main Render Mode setting.
+      Rendering style for Side B when split mode is enabled. When "auto",
+      automatically uses 2-way graphics vs legacy or 3-way vivid vs photo vs
+      legacy depending on detected image type.
+  split_render_mode_c:
+    name: Split Side C Render Mode
+    description: >-
+      Optional third rendering style for 3-way split comparison. Leave "auto" to
+      include "legacy" as the 3rd band on photos, or set "none" for 2-way
+      splits when overriding Side B.
   rotation:
     name: Rotation
     description: >-

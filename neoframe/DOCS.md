@@ -62,8 +62,9 @@ The add-on will attempt DNS resolution automatically using the configured DNS se
 | `dither_type` | `floydSteinberg` | Algorithm: `floydSteinberg`, `atkinson`, `stucki`, `jarvis`, `ordered`, `none` |
 | `dither_strength` | `1.0` | Dithering intensity (0.0–2.0) |
 | `ink_saturation` | `0.5` | Blend factor (0.0–1.0) between pure RGB and measured Spectra 6 inks (`photo` / `graphics`) |
-| `split_mode` | `none` | A/B comparison split: `none`, `left-right`, or `top-bottom` |
-| `split_render_mode` | `photo` | Render mode for Split Side B (Right / Bottom) when `split_mode` is enabled |
+| `split_mode` | `none` | Split comparison mode: `none`, `left-right`, `top-bottom`, `diagonal` (TL→BR), or `diagonal-bl-tr` (BL→TR). Automatically draws each segment's method label along its longest frame edge |
+| `split_render_mode` | `auto` | Render mode for Split Side B. When `auto`, graphics split 2-way (`graphics` vs `legacy`) and photos split 3-way (`vivid` vs `photo` vs `legacy`) |
+| `split_render_mode_c` | `auto` | Optional 3rd render mode for 3-way splits (`auto`, `none`, `vivid`, `photo`, `graphics`, `legacy`) |
 | `contrast` | `1.2` | Contrast multiplier (1.0 = no change) |
 | `rotation` | `0` | Image rotation: `0`, `90`, `180`, `270` |
 | `scaling` | `fit_8x10` | `fill`, `fit`, `fit_8x10`, or `custom` |
