@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Force a fresh checkout of the neoframe code on every rebuild: the Docker layer cache was reusing the pre-1.2.0 clone, so 1.2.0 shipped with the old renderer.
+
 ## 1.2.0
 
 - Updated automatic split rendering: `graphics` images split 2-way (`graphics` vs `legacy`) and `photo` images split 3-way (`vivid` vs `photo` vs `legacy`).

@@ -27,6 +27,11 @@ RUN curl -fsSL https://bun.sh/install | bash
 # IPv6 seems to be default, this results in 'Connection reset by peer' -> Restrict to IPv4 in /etc/gai.conf
 RUN sed -i 's/^#precedence ::ffff:0:0\/96  100/precedence ::ffff:0:0\/96 100/' /etc/gai.conf
 
+# Bust the Docker layer cache whenever neoframe main advances. Without
+# this, a version bump alone reuses the cached `git clone` layer and the
+# image ships stale neoframe code (1.2.0 shipped the pre-1.2.0 checkout).
+ADD https://api.github.com/repos/deftdawg/neoframe/commits/main /tmp/neoframe_head.json
+
 RUN git clone --depth 1 --branch "${NEOFRAME_VERSION}" \
     https://github.com/${NEOFRAME_REPO}/neoframe.git /opt/neoframe
 
