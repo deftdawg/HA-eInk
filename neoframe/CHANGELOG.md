@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.2
+
+- Improved `graphics` mode dark-tone handling so dim text on dark backgrounds (e.g., InkyPi Word Clock) is no longer crushed to solid black by the neutral Bayer dead-zone, pastel darkening, or edge sharpening.
+- Updated `auto` render mode to detect dark-background graphics with significant low-contrast dim detail (`subtleDarkEdges`) and automatically switch to `photo` mode to preserve tonal range.
+
 ## 1.2.1
 
 - Force a fresh checkout of the neoframe code on every rebuild: the Docker layer cache was reusing the pre-1.2.0 clone, so 1.2.0 shipped with the old renderer.
