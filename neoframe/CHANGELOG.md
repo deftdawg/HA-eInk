@@ -2,8 +2,8 @@
 
 ## 1.2.2
 
-- Improved `graphics` mode dark-tone handling so dim text on dark backgrounds (e.g., InkyPi Word Clock) is no longer crushed to solid black by the neutral Bayer dead-zone, pastel darkening, or edge sharpening.
-- Updated `auto` render mode to detect dark-background graphics with significant low-contrast dim detail (`subtleDarkEdges`) and automatically switch to `photo` mode to preserve tonal range.
+- Improved `graphics` mode to restore faint low-contrast local lightness detail (`restoreFaintDetail`) before dithering, keeping dim text on coloured/dark backgrounds (e.g., InkyPi Word Clock) and subtle overlapping shapes (e.g., weather clouds) legible while keeping flat areas and strong edges crisp.
+- Eliminated the neutral grey dead-zone in `graphics` mode Bayer dithering and guarded dark-color adaptation and edge sharpening so dark-mode UI contrast is preserved.
 
 ## 1.2.1
 
