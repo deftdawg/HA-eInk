@@ -1,9 +1,12 @@
 # Changelog
 
+## 1.2.3
+
+- Replaced the `auto → photo` fallback with `restoreFaintDetail` directly inside `graphics` mode so dim text on coloured/dark backgrounds (e.g., InkyPi Word Clock) and subtle overlapping shapes (e.g., weather clouds) remain legible while keeping deep uniform backgrounds and crisp active text.
+
 ## 1.2.2
 
-- Improved `graphics` mode to restore faint low-contrast local lightness detail (`restoreFaintDetail`) before dithering, keeping dim text on coloured/dark backgrounds (e.g., InkyPi Word Clock) and subtle overlapping shapes (e.g., weather clouds) legible while keeping flat areas and strong edges crisp.
-- Eliminated the neutral grey dead-zone in `graphics` mode Bayer dithering and guarded dark-color adaptation and edge sharpening so dark-mode UI contrast is preserved.
+- Improved `graphics` mode dark-tone handling (neutral Bayer spread, dark-color adaptation guard, and dark-background edge-sharpening guard).
 
 ## 1.2.1
 
